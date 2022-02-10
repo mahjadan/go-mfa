@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+{{ if .error }}
+{{ .error}}
+{{end}}
+
+<div>
+    <a href="/">Home</a>
+</div>
+<div>
+    <a href="/login">Login</a>
+</div>
+<form action="/register" method="post">
+    <fieldset>
+      <input type="text" name="username" id="username">
+      <input type="password" name="password" id="password">
+      <button type="submit">Register</button>
+    </fieldset>
+</form>
+</body>
+</html>

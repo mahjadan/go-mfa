@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  go-mfa:
+    build:
+      context: .
+    environment:
+      - PORT=:8000
+      - MONGO_URL=mongodb://mongoDB:27017
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongoDB
+    links:
+      - mongoDB
+    networks:
+      - mfa-network
+
+  mongoDB:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    networks:
+      - mfa-network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongoDB
+#      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+    links:
+      - mongoDB
+    networks:
+      - mfa-network
+
+networks:
+  mfa-network:
