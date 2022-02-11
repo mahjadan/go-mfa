@@ -40,13 +40,14 @@ func main() {
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
-
+	app.Static("/statics", "./public")
 	app.Use(recover.New())
 	app.Use(logger.New())
 
 	app.Get("/", handler.HandleHome)
 	app.Get("/dashboard", handler.HandleDashboard)
 	app.Post("/auth-mfa", handleAuth)
+	app.Get("/enable-mfa", handler.HandleEnableMFA)
 	app.Get("/users/:email", handleGet)
 	app.Post("/register", handler.HandleRegister)
 	app.Get("/register", handler.RegisterPage)

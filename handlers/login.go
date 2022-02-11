@@ -39,5 +39,5 @@ func (h Handler) HandleLogin(c *fiber.Ctx) error {
 	}
 	sess.Set(h.sessUserKey, req.Username)
 	defer sess.Save()
-	return c.Redirect("/dashboard/" + "?username=" + req.Username)
+	return c.Redirect("/dashboard")
 }

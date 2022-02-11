@@ -1,0 +1,121 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    background: url();
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+.login-wrapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form{
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    padding: 80px 40px 40px;
+    background: rgba(255, 97, 97, 0.7);
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+}
+
+.form::before{
+    position: absolute;
+    content: '';
+    top:0;
+    left:0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    transform: skewX(28deg);
+    border-radius: 10px;
+    /* this way you can select the text box*/
+    pointer-events: none;
+}
+
+.form img{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    left: calc(50% - 50px);
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+a:hover {
+    text-decoration: none;
+}
+a:link {
+    text-decoration: none;
+}
+.form h2{
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.form .input-group{
+    position: relative;
+}
+
+.form .input-group input{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1rem;
+    background-color: transparent;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    color: inherit;
+}
+
+.form .input-group label{
+    position: absolute;
+    left:0;
+    top:0;
+    padding: 10px 0;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .3s ease-out;
+}
+
+.form .input-group input:focus + label ,
+.form .input-group input:valid + label {
+    transform: translateY(-18px);
+    font-size: .9rem;
+    color: orange;
+}
+
+/* this is for fireforx becauze it shows red border */
+.form .input-group input:invalid {
+    box-shadow:0 0 7px transparent;
+}
+
+
+.submit-btn{
+    display: block;
+    margin-left: auto;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: rgb(60, 126, 195);
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    outline: none;
+    font-size: 1rem;
+    cursor: pointer;
+}

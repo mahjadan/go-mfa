@@ -2,21 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="statics/css/styles.css">
     <title>Login</title>
 </head>
 <body>
-{{ if .error }}
-{{ .error}}
-{{end}}
+
 <div>
     <a href="/">Home</a>
 </div>
-<form action="/login" method="post">
-    <fieldset>
-        <input type="text" name="username" id="username">
-        <input type="password" name="password" id="password">
-        <button type="submit">Login</button>
-    </fieldset>
-</form>
+
+
+<div class="login-wrapper">
+
+    <form action="/login" class="form" method="post">
+        <h2>Login</h2>
+
+        <div class="input-group">
+            <input type="text" name="login-user" id="loginUser" required>
+            <label for="loginUser">User Name</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password-user" id="password-user" required>
+            <label for="password-user">Password</label>
+        </div>
+
+        <input type="submit" value="Login" class="submit-btn">
+        <a href="/register" > Dont have Account</a>
+    </form>
+
+</div>
+
+<!--<form action="/login" method="post">-->
+<!--    <fieldset>-->
+<!--        <input type="text" name="username" id="username">-->
+<!--        <input type="password" name="password" id="password">-->
+<!--        <button type="submit">Login</button>-->
+<!--    </fieldset>-->
+<!--</form>-->
 </body>
 </html>

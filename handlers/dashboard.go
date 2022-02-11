@@ -14,5 +14,5 @@ func (h Handler) HandleDashboard(c *fiber.Ctx) error {
 		return c.Redirect("/login")
 	}
 
-	return c.Render("dash", fiber.Map{"username": username})
+	return c.Render("dashboard", fiber.Map{"username": username})
 }
