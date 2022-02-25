@@ -5,14 +5,17 @@ import (
 )
 
 func (h Handler) HandleDashboard(c *fiber.Ctx) error {
-	username := c.Query("username")
 	sess, err := h.session.Get(c)
 	if err != nil {
 		panic(err)
 	}
-	if name := sess.Get(h.sessUserKey); name != username {
+	username := sess.Get(h.sessUserKey)
+	if username == nil {
 		return c.Redirect("/login")
 	}
 
-	return c.Render("dashboard", fiber.Map{"username": username})
+	return c.Render("dashboard", fiber.Map{
+		"username":  username,
+		"dashboard": "active",
+	})
 }

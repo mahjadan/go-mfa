@@ -44,7 +44,7 @@ func main() {
 	app.Use(recover.New())
 	app.Use(logger.New())
 
-	app.Get("/", handler.HandleHome)
+	app.Get("/", handler.HandleDashboard)
 	app.Get("/dashboard", handler.HandleDashboard)
 	app.Post("/auth-mfa", handleAuth)
 	app.Get("/enable-mfa", handler.HandleEnableMFA)

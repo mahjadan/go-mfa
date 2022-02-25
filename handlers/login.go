@@ -1,11 +1,13 @@
 package handlers
 
 import (
+	"context"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
 	mo "github.com/mahjadan/go-mfa/pkg/models"
 	"github.com/mahjadan/login/cmd/handle"
 	"go.mongodb.org/mongo-driver/mongo"
+	"time"
 )
 
 func (h Handler) LoginPage(c *fiber.Ctx) error {
@@ -16,13 +18,16 @@ func (h Handler) LoginPage(c *fiber.Ctx) error {
 func (h Handler) HandleLogin(c *fiber.Ctx) error {
 	req := struct {
 		Username string
+		Password string
 	}{}
 	if err := c.BodyParser(&req); err != nil {
 		return err
 	}
+	ctx, cancelFunc := context.WithTimeout(c.Context(), 10*time.Second)
+	defer cancelFunc()
 	fmt.Println(req)
 	var mClient mo.MongoClient
-	err := h.repo.Get(c.Context(), req.Username, &mClient)
+	err := h.repo.Get(ctx, req.Username, &mClient)
 	if err != nil {
 		if err == mongo.ErrNoDocuments {
 			return c.Render("login", fiber.Map{

@@ -9,26 +9,26 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    /*background: #222;*/
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 400;
-}
+/*body {*/
+/*    margin: 0;*/
+/*    !*background: #222;*!*/
+/*    font-family: 'Work Sans', sans-serif;*/
+/*    font-weight: 400;*/
+/*}*/
 
-.content {
-    height: 100vh;
-    /*background-image: url("../images/philipp-potocnik-1a17t-wwL1o-unsplash.jpg");*/
-    /*background-size: cover;*/
-    /*background-color: #9999;*/
-    /*background-blend-mode: multiply;*/
-    /*display: -ms-grid;*/
-    /*display: grid;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
+/*.content {*/
+/*    height: 100vh;*/
+/*    !*background-image: url("../images/philipp-potocnik-1a17t-wwL1o-unsplash.jpg");*!*/
+/*    !*background-size: cover;*!*/
+/*    !*background-color: #9999;*!*/
+/*    !*background-blend-mode: multiply;*!*/
+/*    !*display: -ms-grid;*!*/
+/*    !*display: grid;*!*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    flex-direction: row;*/
+/*}*/
 
 /* navigation styles */
 header {

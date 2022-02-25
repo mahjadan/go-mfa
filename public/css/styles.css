@@ -5,7 +5,6 @@
 }
 
 body{
-    background: url();
     background-size: cover;
     font-family: sans-serif;
 }
@@ -118,4 +117,17 @@ a:link {
     outline: none;
     font-size: 1rem;
     cursor: pointer;
+}
+
+.form .error_notice{
+    color: #d11313;
+    margin: 10px 0px;
+}
+
+.content{
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
