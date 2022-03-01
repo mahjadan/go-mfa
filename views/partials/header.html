@@ -1,12 +1,11 @@
-
 <header>
     <h1 class='logo'> Go MFA</h1>
     <input type='checkbox' class='nav-toggle' id='nav-toggle'/>
 
     <nav>
         <ul>
-            <li> <a href="/" class={{.dashboard}}> Dashboard</a>    </li>
-            <li> <a href="/enable-mfa" class={{.mfa}}>MFA</a>    </li>
+            <li> <a href="/" class={{.dashboardMenu}}> Dashboard</a>    </li>
+            <li> <a href="/profile" class={{.profileMenu}}>Profile</a>    </li>
             <li> <a href="/logout"> Logout</a>    </li>
         </ul>
     </nav>
@@ -14,5 +13,4 @@
     <label for='nav-toggle' class='nav-toggle-label' >
         <div class="menu-btn__burger"></div>
     </label>
-
 </header>

@@ -1,0 +1,21 @@
+    <form action="/enable-mfa" method="post">
+        <h3>MFA is Already enabled</h3>
+        <p id="qrcode"></p>
+        <button type="submit">Disable</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+
+    <script>
+
+        console.log()
+        const qrcode = new QRCode(document.getElementById('qrcode'), {
+            text: {{.url}},
+            width: 128,
+            height: 128,
+            colorDark : '#000',
+            colorLight : '#fff',
+            correctLevel : QRCode.CorrectLevel.H
+        });
+        console.log(qrcode)
+
+    </script>

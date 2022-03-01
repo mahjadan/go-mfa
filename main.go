@@ -12,15 +12,12 @@ import (
 	"github.com/mahjadan/go-mfa/pkg/models"
 	"github.com/mahjadan/go-mfa/pkg/repository"
 	"github.com/mahjadan/login/cmd/handle"
-	"github.com/xlzd/gotp"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
 )
-
-var secretLength = 16
 
 var database *mongo.Database
 
@@ -46,8 +43,9 @@ func main() {
 
 	app.Get("/", handler.HandleDashboard)
 	app.Get("/dashboard", handler.HandleDashboard)
-	app.Post("/auth-mfa", handleAuth)
-	app.Get("/enable-mfa", handler.HandleEnableMFA)
+	//app.Post("/auth-mfa", handleAuth)
+	app.Post("/enable-mfa", handler.HandleEnableMFA)
+	app.Get("/profile", handler.HandleProfile)
 	app.Get("/users/:email", handleGet)
 	app.Post("/register", handler.HandleRegister)
 	app.Get("/register", handler.RegisterPage)
@@ -55,9 +53,7 @@ func main() {
 	app.Get("/login", handler.LoginPage)
 	app.Get("/logout", handler.HandleLogout)
 
-	secret := gotp.RandomSecret(secretLength)
-
-	fmt.Println("Current OTP is", gotp.NewDefaultTOTP(secret).Now())
+	//fmt.Println("Current OTP is", gotp.NewDefaultTOTP(secret).Now())
 
 	app.Listen(os.Getenv("PORT"))
 
@@ -73,21 +69,6 @@ func handleGet(c *fiber.Ctx) error {
 		}
 		fmt.Println(err)
 		return c.JSON(handle.NewInternalServerResponse(err.Error()))
-	}
-	return c.JSON(mClient)
-}
-
-func handleAuth(c *fiber.Ctx) error {
-	var mfaReq mo.AuthRequest
-	if err := c.BodyParser(&mfaReq); err != nil {
-		return err
-	}
-	fmt.Println(mfaReq)
-	var mClient mo.MongoClient
-	err := database.Collection("clients").FindOne(c.Context(), bson.M{"username": mfaReq.Username}).Decode(&mClient)
-	if err != nil {
-		fmt.Println(err)
-		return c.JSON(handle.NotFoundErrorResponse)
 	}
 	return c.JSON(mClient)
 }

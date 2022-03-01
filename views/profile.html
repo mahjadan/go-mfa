@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="statics/css/styles-nav.css">
+    <link rel="stylesheet" href="statics/css/styles.css">
+    <link rel="stylesheet" href="statics/css/profile.css">
+    <title>Multifactor Authentication</title>
+</head>
+<body>
+{{template "partials/header" .}}
+<div class='content'  >
+
+    <h2>Multifactor Authentication</h2>
+
+    {{ if .error }}
+    <h2> something went wrong {{.error}}</h2>
+
+    {{else}}
+
+    <div class="container">
+        <div class="vir-tabs">
+            <input type="radio" name="vtab" id="authentication" checked>
+            <label class="vtab-label" for="authentication" >Authentication</label>
+
+            <input type="radio" name="vtab" id="personal-info">
+            <label class="vtab-label" for="personal-info" >Personal Info</label>
+
+            <div class="tab-contents">
+                <div id="authentication-tab-content">
+                    {{ if .show_enable_authentication }}
+                        {{template "partials/profile/enable_authentication" .}}
+                    {{else}}
+                        {{template "partials/profile/view_authentication" .}}
+                    {{end}}
+                </div>
+
+                <div id="personal-info-tab-content">
+                    here is personal info contents.
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {{end}}
+</div>
+</body>
+</html>

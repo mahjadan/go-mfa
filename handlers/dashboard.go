@@ -15,7 +15,7 @@ func (h Handler) HandleDashboard(c *fiber.Ctx) error {
 	}
 
 	return c.Render("dashboard", fiber.Map{
-		"username":  username,
-		"dashboard": "active",
+		"username":      username,
+		"dashboardMenu": "active",
 	})
 }

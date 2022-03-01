@@ -20,15 +20,12 @@ func (h Handler) HandleRegister(c *fiber.Ctx) error {
 		return err
 	}
 	fmt.Println(req)
-	var mClient mo.MongoClient
-	err := h.repo.Get(c.Context(), req.Username, &mClient)
-	if err == nil {
+	exists, err := h.repo.Exists(c.Context(), req.Username)
+	if exists && err == nil {
 		fmt.Println(err)
 		return c.Render("register", fiber.Map{"error": "user already exists"})
 	}
-	mClient.Username = req.Username
-	mClient.Password = req.Password
-
+	mClient := mo.New(req.Username, req.Password)
 	err = h.repo.Set(c.Context(), &mClient)
 	if err != nil {
 		return c.JSON(handle.NewInternalServerResponse(err.Error()))

@@ -1,0 +1,96 @@
+.container{
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*margin: 0px auto;*/
+    align-self: flex-start;
+    width: 990px;
+    min-width: 400px;
+    height: 100vh;
+    font-family: 'Open sans', sans-serif;
+
+}
+
+.vir-tabs{
+    position: relative;
+    max-width: 800px;
+    padding: 20px;
+    margin: 50px auto;
+}
+.vir-tabs input[type="radio"]{
+    display: none;
+}
+
+.vir-tabs .vtab-label{
+    display: block;
+    width: 25%;
+    padding: 15px;
+    color: #a2a2a2;
+    font-size: 24px;
+    font-weight: 700;
+    border-left: 5px solid #dcdcdc;
+    transition: .3s ease;
+}
+
+.vir-tabs .vtab-label:hover{
+    cursor: pointer;
+    color: #404040
+}
+/*when input is checked change the next label style*/
+.vir-tabs input[type="radio"]:checked + .vtab-label{
+    color: #404040;
+    border-left: 5px solid #00c4ff;
+}
+/* when authentication tab is checked go to (child) tab-contents and find authentication-tab-content show its content*/
+.vir-tabs #authentication:checked ~ .tab-contents #authentication-tab-content,
+.vir-tabs #personal-info:checked ~ .tab-contents #personal-info-tab-content{
+    display: block;
+}
+
+
+.vir-tabs .tab-contents{
+    position: absolute;
+    top: 0;
+    width: 70%;
+    max-width: 70%;
+    right: 20px;
+}
+/*by default contents are hidden until some radio button is checked*/
+.vir-tabs .tab-contents div{
+    padding: 20px;
+    margin: 20px;
+    display: none;
+}
+
+/*partials enable_authentication styles*/
+.tab-contents #authentication-tab-content h3{
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.tab-contents #authentication-tab-content input[type="checkbox"] {
+    margin-left: 20px;
+}
+.tab-contents #authentication-tab-content label{
+    padding-left: 10px;
+}
+.tab-contents #authentication-tab-content button{
+    display: block;
+    padding: 7px 12px;
+    font-size: 14px;
+    margin: 20px;
+    background: #00c4ff;
+    border: none;
+    border-radius: 8px;
+
+    /*disable the button */
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+}
+.tab-contents #authentication-tab-content input[type="checkbox"]:checked ~ button {
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+}
+/* end partials enable_authentication styles */
+
