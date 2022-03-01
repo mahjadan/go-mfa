@@ -2,17 +2,13 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/session"
 	"github.com/gofiber/template/html"
 	"github.com/mahjadan/go-mfa/handlers"
-	"github.com/mahjadan/go-mfa/pkg/models"
 	"github.com/mahjadan/go-mfa/pkg/repository"
-	"github.com/mahjadan/login/cmd/handle"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -46,10 +42,10 @@ func main() {
 	//app.Post("/auth-mfa", handleAuth)
 	app.Post("/enable-mfa", handler.HandleEnableMFA)
 	app.Get("/profile", handler.HandleProfile)
-	app.Get("/users/:email", handleGet)
 	app.Post("/register", handler.HandleRegister)
 	app.Get("/register", handler.RegisterPage)
 	app.Post("/login", handler.HandleLogin)
+	app.Post("/mfa", handler.HandleMFA)
 	app.Get("/login", handler.LoginPage)
 	app.Get("/logout", handler.HandleLogout)
 
@@ -57,20 +53,6 @@ func main() {
 
 	app.Listen(os.Getenv("PORT"))
 
-}
-
-func handleGet(c *fiber.Ctx) error {
-	email := c.Params("email")
-	var mClient mo.MongoClient
-	err := database.Collection("clients").FindOne(c.Context(), bson.M{"username": email}).Decode(&mClient)
-	if err != nil {
-		if err == mongo.ErrNoDocuments {
-			return c.JSON(handle.NotFoundErrorResponse)
-		}
-		fmt.Println(err)
-		return c.JSON(handle.NewInternalServerResponse(err.Error()))
-	}
-	return c.JSON(mClient)
 }
 
 func initMongoDB() *mongo.Client {

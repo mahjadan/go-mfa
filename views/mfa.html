@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="statics/css/styles.css">
+    <title>MFA</title>
+</head>
+<body>
+
+
+<div class="login-wrapper">
+
+    <form action="/mfa" class="form" method="post">
+        <h2>Login</h2>
+        <div class="error_notice">
+            {{ if .error }}
+            {{ .error}}
+            {{end}}
+        </div>
+        <div class="input-group">
+            <input type="text" name="code" id="code" required>
+            <label for="code">Code</label>
+        </div>
+
+        <input type="submit" value="Verify" class="submit-btn">
+        <a href="/login" > Back to Login</a>
+    </form>
+
+</div>
+</body>
+</html>
