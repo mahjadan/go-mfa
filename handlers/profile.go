@@ -21,7 +21,8 @@ func (h Handler) HandleProfile(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Render("profile", fiber.Map{
 			"profileMenu": "active",
-			"error":       err})
+			"error":       err,
+		})
 	}
 	var mfaEnabled bool
 	var mfa mo.Mfa
@@ -43,5 +44,3 @@ func (h Handler) HandleProfile(c *fiber.Ctx) error {
 		"url":                        url,
 	})
 }
-
-//todo create mfa page to show the mfa options for the user

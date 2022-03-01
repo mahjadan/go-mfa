@@ -39,7 +39,6 @@ func main() {
 
 	app.Get("/", handler.HandleDashboard)
 	app.Get("/dashboard", handler.HandleDashboard)
-	//app.Post("/auth-mfa", handleAuth)
 	app.Post("/enable-mfa", handler.HandleEnableMFA)
 	app.Get("/profile", handler.HandleProfile)
 	app.Post("/register", handler.HandleRegister)
@@ -48,8 +47,6 @@ func main() {
 	app.Post("/mfa", handler.HandleMFA)
 	app.Get("/login", handler.LoginPage)
 	app.Get("/logout", handler.HandleLogout)
-
-	//fmt.Println("Current OTP is", gotp.NewDefaultTOTP(secret).Now())
 
 	app.Listen(os.Getenv("PORT"))
 
