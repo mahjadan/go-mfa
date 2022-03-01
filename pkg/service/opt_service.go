@@ -15,3 +15,7 @@ func VerifyOtpCode(code, secret string) bool {
 	totp := gotp.NewDefaultTOTP(secret)
 	return totp.Verify(code, int(time.Now().Unix()))
 }
+
+func GenerateURL(secret, username string) string {
+	return gotp.NewDefaultTOTP(secret).ProvisioningUri(username, "Rd.Station.Accounts")
+}

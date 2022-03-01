@@ -3,8 +3,8 @@ package handlers
 import (
 	"github.com/gofiber/fiber/v2"
 	mo "github.com/mahjadan/go-mfa/pkg/models"
+	"github.com/mahjadan/go-mfa/pkg/service"
 	"github.com/mahjadan/login/cmd/handle"
-	"github.com/xlzd/gotp"
 )
 
 func (h Handler) HandleProfile(c *fiber.Ctx) error {
@@ -36,8 +36,7 @@ func (h Handler) HandleProfile(c *fiber.Ctx) error {
 			"profileMenu":                "active",
 		})
 	}
-	url := gotp.NewDefaultTOTP(mfa.Data["secret"]).ProvisioningUri(username.(string), "Rd.Station.Accounts")
-
+	url := service.GenerateURL(mfa.Data["secret"], username.(string))
 	return c.Render("profile", fiber.Map{
 		"profileMenu":                "active",
 		"show_enable_authentication": false,
